@@ -1,68 +1,141 @@
-# CodeIgniter 4 Application Starter
+# App Backend (CodeIgniter 4)
 
-## What is CodeIgniter?
+A modern backend API built with CodeIgniter 4, designed for seamless integration with a React frontend. This app provides robust user and teacher management, JWT authentication, and secure, scalable architecture.
 
-CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
-More information can be found at the [official site](https://codeigniter.com).
+---
 
-This repository holds a composer-installable app starter.
-It has been built from the
-[development repository](https://github.com/codeigniter4/CodeIgniter4).
+## 🚀 Features
 
-More information about the plans for version 4 can be found in [CodeIgniter 4](https://forum.codeigniter.com/forumdisplay.php?fid=28) on the forums.
+- **User Management**: Register, login, and list users with secure password hashing.
+- **Teacher Management**: Create and list teachers, each linked to a user account. Teacher data is joined with user info for easy access.
+- **JWT Authentication**: Secure endpoints with JSON Web Tokens.
+- **CORS Support**: Configured for React development (localhost:3000, localhost:5174) and easy production changes.
+- **RESTful API**: Clean, resource-oriented endpoints for frontend consumption.
+- **PostgreSQL Database**: Relational data with migrations and constraints.
+- **Environment-based Config**: All sensitive credentials are loaded from `.env`.
+- **Modern UI Welcome Page**: Custom dashboard for quick project overview.
 
-You can read the [user guide](https://codeigniter.com/user_guide/)
-corresponding to the latest version of the framework.
+---
 
-## Installation & updates
+## 📂 Project Structure
 
-`composer create-project codeigniter4/appstarter` then `composer update` whenever
-there is a new release of the framework.
+```
+backend/
+├── app/
+│   ├── Config/         # App configuration (CORS, Filters, Database, etc.)
+│   ├── Controllers/    # API controllers (User, Teacher, Auth)
+│   ├── Models/         # Eloquent models for User and Teacher
+│   ├── Views/          # Welcome page and error views
+│   └── ...
+├── public/             # Public web root (index.php)
+├── writable/           # Logs, cache, uploads
+├── vendor/             # Composer dependencies
+├── .env                # Environment variables (not committed)
+├── composer.json       # PHP dependencies
+└── README.md           # This file
+```
 
-When updating, check the release notes to see if there are any changes you might need to apply
-to your `app` folder. The affected files can be copied or merged from
-`vendor/codeigniter4/framework/app`.
+---
 
-## Setup
+## 🛠️ Setup & Installation
 
-Copy `env` to `.env` and tailor for your app, specifically the baseURL
-and any database settings.
+1. **Clone the repository**
+   ```bash
+   git clone <your-repo-url>
+   cd backend
+   ```
 
-## Important Change with index.php
+2. **Install dependencies**
+   ```bash
+   composer install
+   ```
 
-`index.php` is no longer in the root of the project! It has been moved inside the *public* folder,
-for better security and separation of components.
+3. **Copy and edit the environment file**
+   ```bash
+   cp .env.example .env
+   # Edit .env with your DB and JWT credentials
+   ```
 
-This means that you should configure your web server to "point" to your project's *public* folder, and
-not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter *public/...*, as the rest of your logic and the
-framework are exposed.
+4. **Set up your database**
+   - Create a PostgreSQL database and user.
+   - Update `.env` with your DB credentials.
+   - Run migrations (if available) or use the provided SQL schema.
 
-**Please** read the user guide for a better explanation of how CI4 works!
+5. **Run the development server**
+   ```bash
+   php spark serve
+   ```
+   The app will be available at [http://localhost:8080](http://localhost:8080)
 
-## Repository Management
+---
 
-We use GitHub issues, in our main repository, to track **BUGS** and to track approved **DEVELOPMENT** work packages.
-We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
-FEATURE REQUESTS.
+## 🔑 Environment Variables
 
-This repository is a "distribution" one, built by our release preparation script.
-Problems with it can be raised on our forum, or as issues in the main repository.
+Set these in your `.env` file:
+```
+DB_HOSTNAME=localhost
+DB_USERNAME=your_db_user
+DB_PASSWORD=your_db_password
+DB_DATABASE=your_db_name
+DB_DRIVER=Postgre
+DB_PORT=5432
+JWT_SECRET=your_jwt_secret
+```
 
-## Server Requirements
+---
 
-PHP version 8.1 or higher is required, with the following extensions installed:
+## 📚 API Endpoints
 
-- [intl](http://php.net/manual/en/intl.requirements.php)
-- [mbstring](http://php.net/manual/en/mbstring.installation.php)
+### Auth
+- `POST /register` — Register a new user
+- `POST /login` — Login and receive JWT
 
-> [!WARNING]
-> - The end of life date for PHP 7.4 was November 28, 2022.
-> - The end of life date for PHP 8.0 was November 26, 2023.
-> - If you are still using PHP 7.4 or 8.0, you should upgrade immediately.
-> - The end of life date for PHP 8.1 will be December 31, 2025.
+### Users
+- `GET /users` — List all users
 
-Additionally, make sure that the following extensions are enabled in your PHP:
+### Teachers
+- `POST /teacher` — Create a teacher (JWT required)
+- `GET /teachers` — List all teachers with user info
 
-- json (enabled by default - don't turn it off)
-- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php) if you plan to use MySQL
-- [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library
+---
+
+## 🔒 Security & Best Practices
+- All sensitive data is loaded from environment variables.
+- CORS is enabled and configurable in `app/Config/Cors.php`.
+- Passwords are hashed before storage.
+- JWT is used for authentication on protected routes.
+- Database constraints ensure data integrity.
+
+---
+
+## 🖥️ Frontend Integration
+- Designed for seamless use with a React frontend (default CORS for localhost:3000 and localhost:5174).
+- All endpoints return JSON for easy consumption.
+
+---
+
+## 📝 Customization
+- Update `app/Config/Cors.php` to change allowed origins.
+- Edit `app/Views/welcome_message.php` for your own dashboard.
+- Add more models/controllers as your app grows.
+
+---
+
+## 🤝 Contributing
+Pull requests and issues are welcome! Please open an issue to discuss your ideas or report bugs.
+
+---
+
+## 📄 License
+This project is open source and available under the MIT License.
+
+---
+
+## 🙏 Acknowledgements
+- [CodeIgniter 4](https://codeigniter.com/)
+- [React](https://react.dev/)
+- [PostgreSQL](https://www.postgresql.org/)
+
+---
+
+> _Happy coding!_
