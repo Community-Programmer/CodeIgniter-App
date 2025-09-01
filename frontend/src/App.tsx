@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './contexts/AuthContext';
 import './index.css';
 import Navbar from './components/layout/Navbar';
@@ -8,6 +8,7 @@ import ProtectedRoute from './components/layout/ProtectedRoute';
 import TeacherForm from './components/TeacherForm';
 import UserList from './components/UserList';
 import TeacherList from './components/TeacherList';
+import LandingPage from './components/LandingPage';
 
 function App() {
   return (
@@ -17,7 +18,7 @@ function App() {
           <Navbar />
           <div>
             <Routes>
-              <Route path="/" element={<Navigate to="/login" />} />
+              <Route path="/" element={<LandingPage />} />
               <Route path="/register" element={<Register />} />
               <Route path="/login" element={<Login />} />
               <Route
