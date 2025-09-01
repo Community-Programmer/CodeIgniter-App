@@ -2,6 +2,9 @@
 
 A modern backend API built with CodeIgniter 4, designed for seamless integration with a React frontend. This app provides robust user and teacher management, JWT authentication, and secure, scalable architecture.
 
+
+<img width="1897" height="907" alt="image" src="https://github.com/user-attachments/assets/f6366f31-e2fe-422c-865d-b8325ff5c616" />
+
 ---
 
 ## 🚀 Features
