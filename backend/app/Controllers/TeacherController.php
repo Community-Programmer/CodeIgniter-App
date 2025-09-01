@@ -12,6 +12,17 @@ class TeacherController extends ResourceController
 {
     use ResponseTrait;
 
+    // GET /teachers
+    public function index()
+    {
+        $builder = (new TeacherModel())->db->table('teachers');
+        $builder->select('teachers.*, auth_user.email, auth_user.first_name, auth_user.last_name');
+        $builder->join('auth_user', 'auth_user.id = teachers.user_id');
+        $teachers = $builder->get()->getResultArray();
+        return $this->respond($teachers);
+    }
+    use ResponseTrait;
+
     /**
      * Single API endpoint to create both user and teacher records
      * Protected with JWT authentication
