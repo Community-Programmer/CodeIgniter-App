@@ -2,6 +2,15 @@
 
 A modern full-stack application featuring a React frontend and a CodeIgniter 4 backend. This project provides robust user and teacher management, JWT authentication, PostgreSQL integration, and a beautiful UI for seamless user experience.
 
+<img width="1897" height="907" alt="image" src="https://github.com/user-attachments/assets/f6366f31-e2fe-422c-865d-b8325ff5c616" />
+<img width="1895" height="906" alt="image" src="https://github.com/user-attachments/assets/220a0c69-df01-47dd-8ab5-5e1de1bba0b7" />
+<img width="1898" height="905" alt="image" src="https://github.com/user-attachments/assets/a7eef1c6-3afe-4a8f-9b57-6d1b041da314" />
+<img width="1896" height="906" alt="image" src="https://github.com/user-attachments/assets/3a1ab25b-be8b-4ac0-bc61-6bb5a83eda4b" />
+<img width="1895" height="911" alt="image" src="https://github.com/user-attachments/assets/87345fa7-4d07-4c88-849a-01ad2587a359" />
+<img width="1918" height="905" alt="image" src="https://github.com/user-attachments/assets/ccb5d387-734d-430b-9f0f-0399ebab9aff" />
+<img width="1917" height="897" alt="image" src="https://github.com/user-attachments/assets/61523d5e-b7b8-473c-a7c6-03aff2fca0b8" />
+
+
 ---
 
 ## 🏗️ Project Structure
