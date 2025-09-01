@@ -24,32 +24,24 @@ class Database extends Config
      *
      * @var array<string, mixed>
      */
-
     public array $default = [
-        'DSN'          => '',
-        'hostname'     => 'ep-shiny-surf-a1c19sc9-pooler.ap-southeast-1.aws.neon.tech',
-        'username'     => 'neondb_owner',
-        'password'     => 'npg_b76eMLXwzPjY',
-        'database'     => 'neondb',
-        'DBDriver'     => 'Postgre',
-        'DBPrefix'     => '',
-        'pConnect'     => false,
-        'DBDebug'      => true,
-        'charset'      => 'utf8mb4',
-        'DBCollat'     => 'utf8mb4_general_ci',
-        'swapPre'      => '',
-        'encrypt'      => false,
-        'compress'     => false,
-        'strictOn'     => false,
-        'failover'     => [],
-        'port'         => 5432,
-        'numberNative' => false,
-        'foundRows'    => false,
-        'dateFormat'   => [
-            'date'     => 'Y-m-d',
-            'datetime' => 'Y-m-d H:i:s',
-            'time'     => 'H:i:s',
-        ],
+        'DSN'      => '',
+        'hostname' => '',
+        'username' => '',
+        'password' => '',
+        'database' => '',
+        'DBDriver' => '',
+        'DBPrefix' => '',
+        'pConnect' => false,
+        'DBDebug'  => true,
+        'charset'  => 'utf8',
+        'DBCollat' => 'utf8_general_ci',
+        'swapPre'  => '',
+        'encrypt'  => false,
+        'compress' => false,
+        'strictOn' => false,
+        'failover' => [],
+        'port'     => 5432,
     ];
 
     //    /**
@@ -85,20 +77,20 @@ class Database extends Config
     //        'username'   => 'root',
     //        'password'   => 'root',
     //        'database'   => 'ci4',
-    //        'schema'     => 'public',
-    //        'DBDriver'   => 'Postgre',
-    //        'DBPrefix'   => '',
-    //        'pConnect'   => false,
-    //        'DBDebug'    => true,
-    //        'charset'    => 'utf8',
-    //        'swapPre'    => '',
-    //        'failover'   => [],
-    //        'port'       => 5432,
-    //        'dateFormat' => [
-    //            'date'     => 'Y-m-d',
-    //            'datetime' => 'Y-m-d H:i:s',
-    //            'time'     => 'H:i:s',
-    //        ],
+        //    'schema'     => 'public',
+        //    'DBDriver'   => 'Postgre',
+        //    'DBPrefix'   => '',
+        //    'pConnect'   => false,
+        //    'DBDebug'    => true,
+        //    'charset'    => 'utf8',
+        //    'swapPre'    => '',
+        //    'failover'   => [],
+        //    'port'       => 5432,
+        //    'dateFormat' => [
+        //        'date'     => 'Y-m-d',
+        //        'datetime' => 'Y-m-d H:i:s',
+        //        'time'     => 'H:i:s',
+        //    ],
     //    ];
 
     //    /**
@@ -193,6 +185,14 @@ class Database extends Config
     public function __construct()
     {
         parent::__construct();
+
+        // Assign from environment variables
+        $this->default['hostname'] = getenv('DB_HOSTNAME') ?: '';
+        $this->default['username'] = getenv('DB_USERNAME') ?: '';
+        $this->default['password'] = getenv('DB_PASSWORD') ?: '';
+        $this->default['database'] = getenv('DB_DATABASE') ?: '';
+        $this->default['DBDriver'] = getenv('DB_DRIVER') ?: 'Postgre';
+        $this->default['port']     = getenv('DB_PORT') ?: 5432;
 
         // Ensure that we always set the database group to 'tests' if
         // we are currently running an automated test suite, so that
